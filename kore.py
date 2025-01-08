@@ -11,7 +11,6 @@ import google.generativeai as genai
 import os
 
 # Load environment variables
-load_dotenv()
 
 # Configuration for Gemini Embeddings
 class GeminiEmbeddings:
