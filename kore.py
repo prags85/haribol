@@ -14,7 +14,7 @@ import os
 
 # Configuration for Gemini Embeddings
 class GeminiEmbeddings:
-    def __init__(self, model_name="models/text-embedding-004", api_key=os.getenv("AIzaSyB3YqnrS9jBzDA8EuASkd6gDNI8UQkTQJw")):
+    def __init__(self, model_name="models/text-embedding-004", api_key="AIzaSyB3YqnrS9jBzDA8EuASkd6gDNI8UQkTQJw"):
         if api_key is None:
             raise ValueError("API key is required for Gemini embeddings.")
         genai.configure(api_key=api_key)
@@ -45,7 +45,7 @@ def initialize_chain():
     
     # Initialize embeddings and vector store
     embeddings = GeminiEmbeddings()
-    vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
+    vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings,persist_directory="./chroma_db")
     
     # Set up retriever and chain
     retriever = vectorstore.as_retriever()
